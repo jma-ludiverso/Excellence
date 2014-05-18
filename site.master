@@ -1,0 +1,88 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="site.master.cs" Inherits="themes_Excellence_site" EnableViewState="true"  %>
+
+<%@ Register Assembly="obout_EasyMenu_Pro" Namespace="OboutInc.EasyMenu_Pro" TagPrefix="oem" %>
+<%@ Register Src="~/admin/menu.ascx" TagName="menu" TagPrefix="uc1" %>
+<%@ Import Namespace="BlogEngine.Core" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title><%=BlogSettings.Instance.Name %></title>
+    <link id="favicon" rel="icon" type="image/png" href="img/fav_icon.png" />
+    <link href="general.css" rel="stylesheet" type="text/css" />
+    <link href="posts.css" rel="stylesheet" type="text/css" />
+    <link href="comments.css" rel="stylesheet" type="text/css" />
+    <link href="widgets.css" rel="stylesheet" type="text/css" />
+    <meta name="description" content="Un blog para ayudarte a sacar el m&aacuute;ximo partido a las posibilidades de Excel. Un blog para que tengas la oportunidad de conocer mi trabajo y mejorar en el tuyo." />
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <asp:ContentPlaceHolder id="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div id="container" >
+        <div id="content" class="contenedorGeneral">
+
+            <form id="form1" runat="server">
+                <div class="contenedorCabecera">
+                    <div class="header_logo">
+                    </div>
+                    <div class="header_text_h1">
+                        <%=BlogSettings.Instance.Name %>
+                    </div>
+                    <div class="header_text">
+                        <%=BlogSettings.Instance.Description %>
+                    </div>
+                    <div class="header_base">
+                    </div>
+                </div>
+                <div class="header_menu">
+                    <oem:EasyMenu ID="EasyMenu1" runat="server" ShowEvent="Always" EqualDivision="True" Width="100%" 
+                        StyleFolder="MSDN2" Position="Horizontal" DataIdField="" 
+                        DataParentIdField="" DataTextField="" DataUrlField="" DataUrlTargetField="" 
+                        DropInterval="10" securedPageUrl="javascript:false;" SubMenuPlaceHolderID="">
+                        <Components>
+                        </Components>
+                    </oem:EasyMenu>
+                </div>
+                <table width="100%">
+                    <tr>
+                        <td style="vertical-align:top;">
+                            <asp:ContentPlaceHolder id="cphBody" runat="server">
+        
+                            </asp:ContentPlaceHolder>
+                        </td>
+                        <td style="width:220px;vertical-align:top;">
+                            <br />
+                            <asp:Panel ID="pAdmin" runat="server" Visible="false">
+                                <blog:WidgetZone ID="WidgetZone1" runat="server" ZoneName="PageZone"></blog:WidgetZone>
+                            </asp:Panel>
+                            <asp:Panel ID="pReader" runat="server">
+                                <blog:WidgetZone ID="widgets" runat="server" ZoneName="be_WIDGET_ZONE"></blog:WidgetZone>
+                            </asp:Panel>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div> 
+    </div>
+    <div id="footer" class="contenedorGeneral">        
+        <div class="datoscontacto">
+            <table width="100%">
+                <tr align="center">
+                    <td style="width:20%">&nbsp;</td>
+                    <td><b><asp:Label ID="lblContacto" runat="server" Text="Contacto: "></asp:Label></b></td>                    
+                    <td><a href="mailto:anamartinromero79@gmail.com" title="email" target="_blank" class="enlace"><img src="img/1398481844_aiga_mail.png" alt="contacto por email" align="top" runat="server"/>&nbsp;&nbsp;anamartinromero79@gmail.com</a></td>
+                    <td>&nbsp;|&nbsp;</td>
+                    <td><a href="tel:+34651478554" title="telefono" target="_blank" class="enlace"><img src="img/1398481946_phone.png" id="contact_tel_img" alt="telefono" align="top" runat="server"/>&nbsp;&nbsp;651 478 554</a></td>
+                    <td>&nbsp;|&nbsp;</td>
+                    <td><asp:HyperLink ID="contact_link" runat="server" NavigateUrl="https://www.linkedin.com/pub/ana-mart%C3%ADn-romero/37/883/5aa" ToolTip="linkedin" CssClass="enlace" Target="_blank"><img src="img/1398481712_linkedin.png" alt="linkedin" align="top" runat="server"/>&nbsp;<asp:Label ID="contact_linkedin" runat="server" Text="Mi perfil en Linkedin"></asp:Label></asp:HyperLink>
+                    </td>
+                    <td style="width:20%">&nbsp;</td>
+                </tr>
+            </table>            
+        </div>
+    </div>
+</body>
+</html>
