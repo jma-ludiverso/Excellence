@@ -6,23 +6,39 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using BlogEngine.Core;
 using System.Net.Mail;
+using Obout.Ajax.UI.Captcha;
 
 public partial class themes_Excellence_contact : BlogEngine.Core.Web.Controls.BlogBasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        Captcha1.TextLength = 5;
+        Captcha1.FontFamily = "Verdana";
+        Captcha1.ForeColor = System.Drawing.Color.Black;
+        Captcha1.BackColor = System.Drawing.Color.White;
+        Captcha1.BrushFillerColor = System.Drawing.Color.White;
+        Captcha1.TextBrush = BrushType.Solid;
+        Captcha1.BackBrush = BrushType.Confetti;
+        Captcha1.LineNoise = NoiseLevel.None;
+        Captcha1.BackgroundNoise = NoiseLevel.Low;
+        Captcha1.FontWarpLevel = NoiseLevel.Low;
+        Captcha1.BorderWidth = Unit.Empty;
+        Captcha1.BorderColor = System.Drawing.Color.Empty;
     }
 
     protected void btnSend_Click(object sender, EventArgs e)
     {
         try
         {
-            string body = this.EmailBody(this.txtEmail.Text, this.txtName.Text, this.txtMessage.Text);
-            this.SendEmail(this.txtEmail.Text, this.txtName.Text, this.txtSubject.Text, body);
-            this.SendConfirmation(this.txtEmail.Text, this.txtName.Text, this.txtSubject.Text, body);
-            this.pContactData.Visible = false;
-            this.pContactMsg.Visible = true;
+            if (this.Page.IsValid)
+            { 
+                string body = this.EmailBody(this.txtEmail.Text, this.txtName.Text, this.txtMessage.Text);
+                this.SendEmail(this.txtEmail.Text, this.txtName.Text, this.txtSubject.Text, body);
+                this.SendConfirmation(this.txtEmail.Text, this.txtName.Text, this.txtSubject.Text, body);
+                this.pContactData.Visible = false;
+                this.pContactMsg.Visible = true;
+                CaptchaIn.Text = "";
+            }
         }
         catch (Exception ex)
         {
